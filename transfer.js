@@ -6,8 +6,8 @@ const date=new Date();
 url=`https://newsapi.org/v2/everything?q=${search}&apiKey=270f73a6471e4091befa92f31a39bb2a`;
 
 let content=[];
-    const res= fetch(url).then(res=>res.json())
-    .then((result)=>{
+    const res= await fetch(url);
+    const result=await res.json();
     content=result.articles.map((val)=>{
          return val;
     })
@@ -33,7 +33,7 @@ let content=[];
     });
     document.querySelector('.boxes').innerHTML=html;
 
-})
+
  }
 
 geturl(search);

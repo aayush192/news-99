@@ -6,11 +6,15 @@ const date=new Date();
 url=`https://newsapi.org/v2/everything?q=${search}&apiKey=270f73a6471e4091befa92f31a39bb2a`;
 
 let content=[];
+try{
     const res= await fetch(url);
     const result=await res.json();
     content=result.articles.map((val)=>{
          return val;
     })
+} catch(error){
+    console.log(error);
+}
     console.log(content);
     let html='';
     content.forEach(element => {
@@ -20,7 +24,7 @@ let content=[];
       <div class="item-detail">
       <div class="img">
       <div class='img-detail'>
-      <img src='${element.urlToImage}'>
+      <img src='${element.urlToImage}' loading='lazy'>
       </div>
       </div>
     <div class="author">${author(element)}</div>
